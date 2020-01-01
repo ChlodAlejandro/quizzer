@@ -1,0 +1,70 @@
+/*
+
+The code in this document is written by
+the following students to complete requirements
+in Computer Science 3 for the third quarter.
+
+Chlod Aidan Alejandro
+
+The code in this project is written under the MIT license.
+
+MAIN.CSS
+
+Usage: /index.html
+
+This stylesheet governs the position and
+apperance of the central box on the main page.
+It manages the look of the intro.
+
+*/
+
+body {
+    overflow: hidden;
+}
+
+#main {
+    z-index: 10;
+}
+
+#selection {
+    z-index: 9;
+}
+
+.centerbox {
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -225px;
+    margin-left: -300px;
+    width: 600px;
+    height: 400px;
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
+    transition: all 1s ease-in-out, opacity 0.75s ease-in-out;
+}
+
+.centerbox.hiddenA {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.centerbox.hiddenB {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.centerbox:not(.hiddenA):not(.hiddenB) {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+section {
+    padding: 10px;
+    text-align: center;
+}
+
+.centerbox table, .centerbox table tr {
+    box-sizing: border-box;
+    width: 100%;
+}

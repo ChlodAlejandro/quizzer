@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <!--
+
+        The code in this document is written by
+        the following students to complete requirements
+        in Computer Science 3 for the third quarter.
+
+        Chlod Aidan Alejandro
+        
+        The code in this project is written under the MIT license.
+
+        -->
+        <title>Pop Quiz</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/design.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/quizzer.css">
+    </head>
+
+    <body>
+        <div class="centerbox" id="main">
+            <section>
+                <h1>Pop Quiz</h1>
+                <p>Welcome to Pop Quiz! This website will test your skills in media and entertainment, with varying questions of multiple difficulties.</p>
+                <p>Start by pressing the button below, which will help you configure your quiz.</p>
+                <button id="select">Get Started</button><br/><br/>
+				<button id="open-about">About</button>
+            </section>
+        </div>
+
+		<div class="centerbox hiddenA" id="about">
+			<section>
+				<h1>About</h1>
+				<p>This project started development on 3/6/2019 12:00 PM UTC+8:00. It was finished on 3/12/2019 8:19 AM. The questions were added on 3/12/2019 9:22 AM.</p>
+				<b>Programming and Design</b><br/>
+				Chlod Aidan Alejandro<br/><br/>
+				<b>Questions</b><br/>
+				Aretina Bianca B. Catabay<br/>
+				Sandra Adrianna M. Constantino<br/><br/>
+				<button id="close-about">Back To Main Menu</button>
+			</section>
+		</div>
+
+        <div class="centerbox hiddenA" id="selection">
+            <section>
+                <h1 style="margin-bottom:0">Difficulty</h1>
+                <p>Please set the difficulty of the quiz that you would like to take.</p>
+                <p><select id="type-select">
+					<option value="easy">Easy</option>
+					<option value="medium">Medium</option>
+					<option value="difficult">Difficult</option>
+					<option value="expert">Expert</option>
+					<option value="all">Ask Everything</option>
+					<option value="custom">Custom</option>
+				</select></p>
+				<h1 style="margin-bottom:0">Category</h1>
+				<p>Please set the category of the quiz that you would like to take.</p>
+				<p><select id="category-select">
+					<option value="music">Music</option>
+					<option value="movies">Movies</option>
+					<option value="tv">TV Shows</option>
+					<option value="games">Games</option>
+					<option value="all">Ask Everything</option>
+					<option value="custom">Custom</option>
+				</select></p>
+                <button id="select-start">Start</button>
+            </section>
+        </div>
+
+		<div class="centerbox hiddenA" id="adds-menu">
+			<section>
+				<h1>Custom Mode</h1>
+				<p>Take the test according to your liking.</p>
+				<table style="padding: 0 50px;">
+					<tr>
+						<td style="text-align: left;width:50%;">
+							<input type="checkbox" id="custom-shuffle" checked>Shuffle Questions<br/>
+						</td>
+						<td id="custom-levels" style="text-align: left;">
+							<h4>Questions</h4>
+							<input type="checkbox" id="custom-lvl1-qs" checked>Easy<br/>
+							<input type="checkbox" id="custom-lvl2-qs" checked>Medium<br/>
+							<input type="checkbox" id="custom-lvl3-qs">Difficult<br/>
+							<input type="checkbox" id="custom-lvl4-qs">Expert<br/>
+						</td>
+						<td id="custom-category" style="text-align: left;">
+							<h4>Categories</h4>
+							<input type="checkbox" id="custom-music-qs" checked>Music<br/>
+							<input type="checkbox" id="custom-movie-qs" checked>Movies<br/>
+							<input type="checkbox" id="custom-tv-qs">TV<br/>
+							<input type="checkbox" id="custom-games-qs">Games<br/>
+						</td>
+					</tr>
+				</table><br/>
+				<button id="start">Start</button>
+			</section>
+		</div>
+
+		<div id="quizzer" class="hidden">
+			<section>
+				<h1 id="question">QUIZ QUESTION</h1>
+				<button id="choiceA" class="choice nofocus" value="A">CHOICE A</button>
+				<button id="choiceB" class="choice nofocus" value="B">CHOICE B</button>
+				<button id="choiceC" class="choice nofocus" value="C">CHOICE C</button>
+				<button id="choiceD" class="choice nofocus" value="D">CHOICE D</button>
+				<br/><br/>
+				<button id="proceed" class="nofocus hidden">NEXT</button>
+			</section>
+		</div>
+
+		<div class="centerbox hiddenA" id="results">
+			<section>
+				<h1>Results</h1>
+				<p>Here are the results of your quiz.</p>
+				<table border="0">
+					<tr>
+						<td rowspan="2" style="font-size: 42px; padding: 0; margin: 0; line-height: 1em;">
+							<span id="res-score">0</span><br/>
+							<span style="line-height: 0.1em;">—</span><br/>
+							<span id="res-max">0</span>
+						</td>
+					</tr>
+				</table><br/>
+				<button id="repeat">Try Again</button>
+			</section>
+		</div>
+
+		<script src="scripts/objects.js"></script>
+		<script src="scripts/questions.js"></script>
+		<script src="scripts/quizzer.js"></script>
+        <script>
+
+			document.getElementById("open-about").addEventListener("click", () => {
+				document.getElementById("main").classList.add("hiddenA");
+				document.getElementById("about").classList.remove("hiddenA");
+			});
+
+			document.getElementById("close-about").addEventListener("click", () => {
+				document.getElementById("about").classList.add("hiddenA");
+				document.getElementById("main").classList.remove("hiddenA");
+			});
+
+			document.getElementById("select").addEventListener("click", () => {
+				document.getElementById("main").classList.add("hiddenB");
+				document.getElementById("selection").classList.remove("hiddenA");
+            });
+
+			document.getElementById("type-select").addEventListener("change", () => {
+				document.getElementById("select-start").innerHTML = (document.getElementById("type-select").value === "custom" || document.getElementById("category-select").value === "custom" ?
+					"Next" : "Start");
+			});
+
+			document.getElementById("category-select").addEventListener("change", () => {
+				document.getElementById("select-start").innerHTML = (document.getElementById("type-select").value === "custom" || document.getElementById("category-select").value === "custom" ?
+					"Next" : "Start");
+			});
+
+			document.getElementById("select-start").addEventListener("click", () => {
+				if (document.getElementById("type-select").value === "custom" || document.getElementById("category-select").value === "custom") {
+					document.getElementById("selection").classList.add("hiddenB");
+					document.getElementById("adds-menu").classList.remove("hiddenA");
+					if (document.getElementById("type-select").value === "custom") {
+						document.getElementById("custom-levels").style.display = "inline-block";
+					} else {
+						document.getElementById("custom-levels").style.display = "none";
+					}
+					if (document.getElementById("category-select").value === "custom") {
+						document.getElementById("custom-category").style.display = "inline-block";
+					} else {
+						document.getElementById("custom-category").style.display = "none";
+					}
+				} else {
+					document.getElementById("selection").classList.add("hiddenB");
+					start(false, false);
+				}
+			});
+
+			document.getElementById("start").addEventListener("click", () => {
+				customType = false;
+				customCategory = false;
+				if (document.getElementById("type-select").value === "custom") {
+					customType = true;
+				}
+				if (document.getElementById("category-select").value === "custom") {
+					customCategory = true;
+				}
+				start(customType, customCategory);
+			});
+
+			document.getElementById("select-start").innerHTML = (document.getElementById("type-select").value === "custom" ?
+					"Next" : "Start");
+
+			var defaultCategories = {
+				"music": {
+					"music": true,
+					"movies": false,
+					"tv": false,
+					"games": false
+				},
+				"movies": {
+					"music": false,
+					"movies": true,
+					"tv": false,
+					"games": false
+				},
+				"tv": {
+					"music": false,
+					"movies": false,
+					"tv": true,
+					"games": false
+				},
+				"games": {
+					"music": false,
+					"movies": false,
+					"tv": false,
+					"games": true
+				},
+				"all": {
+					"music": true,
+					"movies": true,
+					"tv": true,
+					"games": true
+				}
+			};
+			var defaultOptions = {
+				"easy": {
+					shuffle: false,
+					categories: defaultCategories[document.getElementById("category-select").value],
+					difficulty: {
+						lvl1: true,
+						lvl2: false,
+						lvl3: false,
+						lvl4: false
+					}
+				},
+				"medium": {
+					shuffle: true,
+					categories: defaultCategories[document.getElementById("category-select").value],
+					difficulty: {
+						lvl1: true,
+						lvl2: true,
+						lvl3: false,
+						lvl4: false
+					}
+				},
+				"difficult": {
+					shuffle: true,
+					categories: defaultCategories[document.getElementById("category-select").value],
+					difficulty: {
+						lvl1: true,
+						lvl2: true,
+						lvl3: true,
+						lvl4: false
+					}
+				},
+				"expert": {
+					shuffle: true,
+					categories: defaultCategories[document.getElementById("category-select").value],
+					difficulty: {
+						lvl1: false,
+						lvl2: false,
+						lvl3: true,
+						lvl4: true
+					}
+				},
+				"all": {
+					shuffle: true,
+					categories: defaultCategories[document.getElementById("category-select").value],
+					difficulty: {
+						lvl1: true,
+						lvl2: true,
+						lvl3: true,
+						lvl4: true
+					}
+				}
+			};
+
+			function getOptions(customType, customCategory) {
+				var final = {};
+				var difficulty =  {
+					lvl1: (document.getElementById("custom-lvl1-qs").checked),
+					lvl2: (document.getElementById("custom-lvl2-qs").checked),
+					lvl3: (document.getElementById("custom-lvl3-qs").checked),
+					lvl4: (document.getElementById("custom-lvl4-qs").checked)
+				};
+				var category = {
+					music: (document.getElementById("custom-music-qs").checked),
+					movies: (document.getElementById("custom-movie-qs").checked),
+					tv: (document.getElementById("custom-tv-qs").checked),
+					games: (document.getElementById("custom-games-qs").checked)
+				};
+				if (!customType) {
+					final = defaultOptions[document.getElementById("type-select").value];
+				}
+				if (!customCategory) {
+					final["categories"] = defaultCategories[document.getElementById("category-select").value];
+				}
+				final["shuffle"] = document.getElementById("custom-shuffle").checked;
+				return final;
+			}
+
+			document.getElementById("repeat").addEventListener("click", function() {
+				document.getElementById("selection").classList.remove("hiddenB");
+				document.getElementById("adds-menu").classList.add("hiddenA");
+				document.getElementById("adds-menu").classList.remove("hiddenB");
+				document.getElementById("results").classList.add("hiddenA");
+			});
+
+			function start(customType, customCategory) {
+				document.getElementById("adds-menu").classList.add("hiddenB");
+				document.getElementById("quizzer").classList.remove("hidden");
+				console.log(getOptions(customType, customCategory));
+				startQuiz(getOptions(customType, customCategory));
+			}
+        </script>
+    </body>
+
+</html>

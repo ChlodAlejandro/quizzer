@@ -1,0 +1,82 @@
+/*
+
+The code in this document is written by
+the following students to complete requirements
+in Computer Science 3 for the third quarter.
+
+Chlod Aidan Alejandro
+
+The code in this project is written under the MIT license.
+
+DESIGN.CSS
+
+Usage: Global
+
+This stylesheet contains CSS rules that are applied
+all throughout the project.
+
+*/
+
+@import "fonts.css";
+
+* {
+    font-family: "Product Sans", sans-serif;
+}
+
+body {
+    background-color: #404040;
+    color: white;
+}
+
+h1 {
+    font-family: "Circular Std", sans-serif;
+    font-weight: normal;
+    font-size: xx-large;
+}
+
+button {
+    display: inline-block;
+    padding: 10px;
+    font-size: large;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: 2px solid #007cc2;
+    background-color: #202020;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:not(.nohover):hover, button:not(.nofocus):focus {
+    background-color: white;
+    color: black;
+}
+
+button:not(.nohover):hover {
+    transform: translateY(-5px);
+    box-shadow: #007cc2 0 5px;
+}
+
+button:active {
+    transform: translateY(-3px);
+    box-shadow: #007cc2 0 2px;
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #ddd;
+}
+
+a:active {
+    color: #007cc2;
+}
+
+select, input[type^="number"], input[type^="text"] {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+}

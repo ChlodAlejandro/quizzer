@@ -1,0 +1,108 @@
+/*
+
+The code in this document is written by
+the following students to complete requirements
+in Computer Science 3 for the third quarter.
+
+Chlod Aidan Alejandro
+
+The code in this project is written under the MIT license.
+
+QUIZZER.CSS
+
+Usage: /index.html
+
+This stylesheet guides the appearance of
+the main quiz module (wherein the quiz
+questions and choices are previewed during
+the duration of the quiz.)
+
+*/
+
+#quizzer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    background-color: #101010;
+    text-align: center;
+    z-index: 100;
+    transition: all 0.5s;
+}
+
+#quizzer.hidden {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+}
+
+#quizzer section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -275px;
+    margin-left: -350px;
+    width: 700px;
+    height: 500px;
+    display: inline;
+    text-align: center;
+    vertical-align: center;
+    transition: all 1s ease-in-out, opacity 0.75s ease-in-out;
+}
+
+.choice {
+    width: 75%;
+    margin: 1%;
+    text-transform: none;
+    transition: all 0.25s ease-in-out, box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.chosen_correct {
+    background-color: #4caf50;
+    border: 2px solid #4caf50;
+    color: black;
+}
+
+.chosen_incorrect {
+    background-color: red;
+    border: 2px solid red;
+}
+
+.correct {
+    border: 2px solid #4caf50;
+}
+
+.incorrect {
+    border: 2px solid red;
+}
+
+.chosen_correct:not(.nohover):hover, .correct:not(.nohover):hover {
+    box-shadow: #4caf50 0 5px;
+}
+
+.chosen_correct:active, .correct:active {
+    box-shadow: #4caf50 0 2px;
+}
+
+.incorrect:not(.nohover):hover, .chosen_incorrect:not(.nohover):hover {
+    box-shadow: red 0 5px;
+}
+
+.incorrect:active, .chosen_incorrect:active {
+    box-shadow: red 0 2px;
+}
+
+#proceed {
+    opacity: 1;
+    height: auto;
+    font-size: initial;
+    transition: all 0.5s;
+}
+
+#proceed.hidden {
+    opacity: 0;
+    height: 0;
+    font-size: 0;
+}
